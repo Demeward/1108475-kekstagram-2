@@ -148,10 +148,12 @@ imageUploadForm.addEventListener('change', () => {
 
 const setImagePreview = (imageFile) => {
   const imageFileName = imageFile.name.toLowerCase();
-  const fileUrl = URL.createObjectURL(imageFile);
   if (FILE_TYPES.some((type) => imageFileName.endsWith(type))) {
+    const fileUrl = URL.createObjectURL(imageFile);
     imagePreview.src = fileUrl;
-    effectsPreviews.forEach((preview) => (preview.style.backgroundImage = `url(${fileUrl})`));
+    effectsPreviews.forEach((preview) => {
+      preview.style.backgroundImage = `url(${fileUrl})`;
+    });
   }
 };
 
