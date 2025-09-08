@@ -64,6 +64,15 @@ const renderComments = () => {
 
 const onCommentsLoadButtonClick = () => renderComments();
 
+const onBigPictureKeydown = (evt) => {
+  if (isEscapeKey(evt.key)) {
+    evt.preventDefault();
+    closeBigPicturePopup();
+  }
+};
+
+const onBigPictureCloseButtonClick = () => closeBigPicturePopup();
+
 const openBigPicturePopup = ({ url, description, likes, comments }) => {
   togglePopup(bigPictureContainer, bigPictureCloseButton, onBigPictureCloseButtonClick, onBigPictureKeydown);
   bigPicturePhoto.src = url;
@@ -78,23 +87,12 @@ const openBigPicturePopup = ({ url, description, likes, comments }) => {
   bigPictureCommentsLoadButton.addEventListener('click', onCommentsLoadButtonClick);
 };
 
-const closeBigPicturePopup = () => {
+function closeBigPicturePopup () {
   togglePopup(bigPictureContainer, bigPictureCloseButton, onBigPictureCloseButtonClick, onBigPictureKeydown);
   bigPictureCommentsLoadButton.classList.remove('hidden');
   currentCommentsCount = 0;
 
   bigPictureCommentsLoadButton.removeEventListener('click', onCommentsLoadButtonClick);
-};
-
-function onBigPictureKeydown (evt) {
-  if (isEscapeKey(evt.key)) {
-    evt.preventDefault();
-    closeBigPicturePopup();
-  }
-}
-
-function onBigPictureCloseButtonClick () {
-  closeBigPicturePopup();
 }
 
 export { openBigPicturePopup };

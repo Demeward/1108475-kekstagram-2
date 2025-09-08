@@ -38,7 +38,7 @@ const renderPictures = (pictures) => {
 };
 
 
-const initImagesFilters = (onFilterChangeCallback) => {
+const initImagesFilters = (renderFilteredPictures) => {
   imagesFiltersContainer.addEventListener('click', (evt) => {
     if (!evt.target.id || evt.target === activeFilterButton) {
       evt.preventDefault();
@@ -50,7 +50,7 @@ const initImagesFilters = (onFilterChangeCallback) => {
         evt.target.classList.add('img-filters__button--active');
         activeFilterButton = evt.target;
         currentFilterType = evt.target.id;
-        onFilterChangeCallback();
+        renderFilteredPictures();
       }
     }
   });
