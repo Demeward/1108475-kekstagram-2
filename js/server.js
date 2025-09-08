@@ -20,4 +20,4 @@ const getData = () => loadData(`${SERVER_URL}${ServerActions.GET.URL}`, ServerAc
 
 const sendData = (body) => loadData(`${SERVER_URL}${ServerActions.POST.URL}`, ServerActions.POST.METHOD, body);
 
-export {getData, sendData};
+export { getData, sendData };

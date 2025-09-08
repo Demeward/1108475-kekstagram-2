@@ -1,22 +1,21 @@
 import { isEscapeKey } from './util.js';
-import {pristine, imageUploadForm, imageUploadHashtagsInput} from './validation.js';
+import { pristine, imageUploadForm, imageUploadHashtagsInput } from './validation.js';
 import { setImagePreview, resetImagePreview } from './image-edit.js';
 
-const bodyElement = document.querySelector('body');
 const imageUploadInput = imageUploadForm.querySelector('#upload-file');
 const imageUploadPopup = imageUploadForm.querySelector('.img-upload__overlay');
 const imageUploadCommentInput = imageUploadForm.querySelector('textarea[name="description"]');
 const imageUploadCloseButton = imageUploadForm.querySelector('#upload-cancel');
 
-const togglePopup = (popup, closeButton, onClickCallback, onKeydownCallback) => {
+const togglePopup = (popup, popupCloseButton, onButtonClick, onDocumentKeydown) => {
   popup.classList.toggle('hidden');
-  bodyElement.classList.toggle('modal-open');
+  document.body.classList.toggle('modal-open');
   if (!popup.classList.contains('hidden')) {
-    closeButton.addEventListener('click', onClickCallback);
-    document.addEventListener('keydown', onKeydownCallback);
+    popupCloseButton.addEventListener('click', onButtonClick);
+    document.addEventListener('keydown', onDocumentKeydown);
   } else {
-    closeButton.removeEventListener('click', onClickCallback);
-    document.removeEventListener('keydown', onKeydownCallback);
+    popupCloseButton.removeEventListener('click', onButtonClick);
+    document.removeEventListener('keydown', onDocumentKeydown);
   }
 };
 
